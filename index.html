@@ -161,6 +161,31 @@
     margin: 0 auto 1.5rem;
   }
 
+  .blur-word{
+    display: inline-block;
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(10px);
+    animation: blurIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes blurIn{
+    to{
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .blur-word{
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
+
   p.sub{
     font-size: 1.08rem;
     color: var(--ink-soft);
@@ -637,7 +662,7 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <p class="location-tag">Chapecó e região — <b>SC</b></p>
-      <h1 class="headline">Projeto, aprovação e obra sob a mesma responsabilidade técnica.</h1>
+      <h1 class="headline"><span class="blur-word" style="animation-delay:0.0s">Projeto,</span> <span class="blur-word" style="animation-delay:0.08s">aprovação</span> <span class="blur-word" style="animation-delay:0.16s">e</span> <span class="blur-word" style="animation-delay:0.24s">obra</span> <span class="blur-word" style="animation-delay:0.32s">sob</span> <span class="blur-word" style="animation-delay:0.4s">a</span> <span class="blur-word" style="animation-delay:0.48s">mesma</span> <span class="blur-word" style="animation-delay:0.56s">responsabilidade</span> <span class="blur-word" style="animation-delay:0.64s">técnica.</span></h1>
       <p class="sub">
         A Naômi reúne projeto arquitetônico, estrutural, elétrico, hidrossanitário, licenciamento
         e gerenciamento de obra em um único escritório — para que barracões, indústrias e
