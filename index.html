@@ -115,7 +115,7 @@
   }
 
   .logo svg{
-    height: 39px;
+    height: 53px;
     width: auto;
     display: block;
   }
@@ -275,6 +275,7 @@
   /* ---------- depth carousel (hero, coluna direita) ---------- */
   .depth-carousel{
     position: relative;
+    z-index: 1;
     width: clamp(340px, 40vw, 520px);
     height: clamp(340px, 40vw, 520px);
     margin: 0 auto;
@@ -368,11 +369,11 @@
     text-align: center;
     gap: 0.9rem;
     margin: 0 auto 3rem;
-    max-width: 720px;
+    max-width: 900px;
   }
 
   .section-head h2{
-    max-width: 14ch;
+    max-width: none;
   }
 
   .section-head p{
@@ -385,15 +386,15 @@
   .service-grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.4rem;
-    max-width: 1040px;
+    gap: 1.1rem;
+    max-width: 900px;
     margin: 0 auto;
   }
 
   .service-card{
     position: relative;
-    aspect-ratio: 1 / 1;
-    padding: 1.8rem;
+    aspect-ratio: 3 / 2;
+    padding: 1rem 1.1rem;
     border: 1px solid var(--line);
     border-radius: 6px;
     background: var(--paper-deep);
@@ -411,22 +412,23 @@
   }
 
   .service-card .mark-sq{
-    width: 8px; height: 8px;
+    width: 6px; height: 6px;
     background: var(--accent);
-    margin-bottom: 1.1rem;
+    margin-bottom: 0.5rem;
     flex-shrink: 0;
     transform: rotate(45deg) translateZ(20px);
   }
 
   .service-card h3{
-    font-size: 1.15rem;
+    font-size: 1.02rem;
     font-weight: 500;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.35rem;
     transform: translateZ(20px);
   }
 
   .service-card p{
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
     color: var(--ink-soft);
     transform: translateZ(20px);
   }
@@ -442,8 +444,8 @@
   .service-complement strong{ color: var(--ink); font-weight: 500; }
 
   @media (max-width: 780px){
-    .service-grid{ grid-template-columns: 1fr; }
-    .service-card{ aspect-ratio: auto; padding: 1.6rem; }
+    .service-grid{ grid-template-columns: 1fr; max-width: 380px; }
+    .service-card{ aspect-ratio: auto; padding: 1.4rem; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -455,36 +457,65 @@
     counter-reset: step;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1120px;
+    gap: 1.2rem;
+    max-width: 1000px;
     margin: 0 auto;
-    text-align: center;
   }
 
-  .step{ counter-increment: step; display: flex; flex-direction: column; align-items: center; }
+  .step{
+    counter-increment: step;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    aspect-ratio: 1 / 1;
+    padding: 1.4rem 1.2rem;
+    border-radius: 14px;
+    background: var(--ink);
+    transition: transform 0.3s ease;
+  }
+
+  .step:hover{ transform: translateY(-4px); }
+
+  .step:not(:last-child)::after{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 1.2rem;
+    height: 2px;
+    background: var(--accent);
+    transform: translateY(-50%);
+  }
 
   .step::before{
     content: counter(step, decimal-leading-zero);
     font-family: var(--font-title);
-    font-size: 1.1rem;
+    font-size: 1.9rem;
+    font-weight: 700;
     color: var(--accent);
     display: block;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
   }
 
   .step h3{
     font-size: 1rem;
     font-weight: 600;
+    color: var(--paper);
     margin-bottom: 0.5rem;
   }
 
-  .step p{ font-size: 0.9rem; color: var(--ink-soft); }
+  .step p{ font-size: 0.85rem; line-height: 1.4; color: rgba(241,240,237,0.62); }
 
   @media (max-width: 900px){
     .process{ grid-template-columns: 1fr 1fr; }
+    .step:not(:last-child)::after{ display: none; }
   }
   @media (max-width: 560px){
-    .process{ grid-template-columns: 1fr; }
+    .process{ grid-template-columns: 1fr; max-width: 300px; }
+    .step{ aspect-ratio: auto; }
   }
 
   /* ---------- diferenciais ---------- */
@@ -514,24 +545,24 @@
     background: var(--ink);
   }
 
-  #para-quem .section-head{ max-width: 900px; }
-  #para-quem .section-head h2{ color: var(--paper); max-width: 20ch; }
-  #para-quem .section-head p{ color: rgba(241,240,237,0.62); max-width: 62ch; }
+  #para-quem .section-head{ max-width: 1000px; }
+  #para-quem .section-head h2{ color: var(--paper); }
+  #para-quem .section-head p{ color: rgba(241,240,237,0.62); max-width: 80ch; }
 
   .obra-cards{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-    max-width: 920px;
+    gap: 1rem;
+    max-width: 840px;
     margin: 0 auto;
   }
 
   .obra-card{
     position: relative;
-    aspect-ratio: 3 / 4;
-    border-radius: 14px;
+    aspect-ratio: 3 / 2;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
     transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
   }
 
@@ -548,12 +579,12 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.8) 100%);
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.82) 100%);
   }
 
   .obra-card:hover{
-    transform: translateY(-6px);
-    box-shadow: 0 20px 36px rgba(0,0,0,0.38);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
   }
 
   .obra-card:hover .obra-card-img{
@@ -562,15 +593,15 @@
 
   .obra-card-label{
     position: absolute;
-    left: 1.1rem;
-    right: 1.1rem;
-    bottom: 1rem;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.55rem;
     z-index: 2;
     color: #fff;
     font-family: var(--font-title);
     font-weight: 500;
-    font-size: 1.25rem;
-    line-height: 1.2;
+    font-size: 0.92rem;
+    line-height: 1.15;
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -601,11 +632,11 @@
   }
 
   @media (max-width: 780px){
-    .obra-cards{ grid-template-columns: 1fr 1fr; }
+    .obra-cards{ grid-template-columns: 1fr 1fr; max-width: 400px; }
   }
 
   @media (max-width: 480px){
-    .obra-cards{ grid-template-columns: 1fr; max-width: 320px; }
+    .obra-cards{ grid-template-columns: 1fr 1fr; max-width: 320px; }
   }
 
   /* ---------- galeria ---------- */
@@ -1008,7 +1039,6 @@
     <ul class="nav-links">
       <li><a href="#para-quem">Para quem</a></li>
       <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#diferenciais">Diferenciais</a></li>
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -1025,7 +1055,7 @@
         <h1 class="headline"><span class="blur-word blur-strong" style="animation-delay:0.0s">Projetos</span> <span class="blur-word blur-strong" style="animation-delay:0.08s">e</span> <span class="blur-word blur-strong" style="animation-delay:0.16s">obras</span> <span class="blur-word blur-strong" style="animation-delay:0.24s">comerciais</span> <span class="blur-word blur-strong" style="animation-delay:0.32s">e</span> <span class="blur-word blur-strong" style="animation-delay:0.4s">industriais,</span> <span class="blur-word" style="animation-delay:0.48s">com</span> <span class="blur-word" style="animation-delay:0.56s">coordenação</span> <span class="blur-word" style="animation-delay:0.64s">centralizada.</span></h1>
         <p class="sub">
           Naômi Engenharia Integrada. Do projeto à execução, todas as etapas da sua
-          obra em um só escritório — mais segurança, menos imprevistos.
+          obra em um só escritório. Mais segurança, menos imprevistos.
         </p>
         <div class="hero-cta">
           <a class="btn" href="#contato">Falar sobre meu projeto</a>
@@ -1110,30 +1140,6 @@
     </div>
   </section>
 
-  <section id="diferenciais">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Como isso funciona na prática.</h2>
-        <p>Três pontos que resumem a forma de trabalho do escritório.</p>
-      </div>
-
-      <div class="diff-row">
-        <h3>Um único ponto de contato</h3>
-        <p>Projeto, aprovações e acompanhamento de obra sob o mesmo escritório — sem dividir responsabilidade entre fornecedores diferentes.</p>
-      </div>
-
-      <div class="diff-row">
-        <h3>Compatibilização antes da execução</h3>
-        <p>As disciplinas são cruzadas antes da obra começar, reduzindo interferências que normalmente só apareceriam no canteiro.</p>
-      </div>
-
-      <div class="diff-row">
-        <h3>Parceiros técnicos avaliados</h3>
-        <p>Quando um serviço foge do nosso escopo, indicamos parceiros técnicos de confiança — você não fica por conta própria.</p>
-      </div>
-    </div>
-  </section>
-
   <section id="projetos">
     <div class="wrap">
       <div class="section-head">
@@ -1186,62 +1192,6 @@
             <div class="driftwall-tile bg-industrial-1"></div>
           </div>
       </div>
-    </div>
-    <div class="wrap">
-      <div class="gallery-legend">
-        <div class="legend-item">
-          <h4>Galpão industrial</h4>
-          <p>Industrial · Render · Cidade: <em>a confirmar</em> · Serviços: <em>a confirmar</em></p>
-        </div>
-        <div class="legend-item">
-          <h4>Galpão industrial — fachada noturna</h4>
-          <p>Industrial · Render · Cidade: <em>a confirmar</em> · Serviços: <em>a confirmar</em></p>
-        </div>
-        <div class="legend-item">
-          <h4>DigimaQ Multimarcas</h4>
-          <p>Comercial · Render · Cidade: <em>a confirmar</em> · Serviços: <em>a confirmar</em></p>
-        </div>
-        <div class="legend-item">
-          <h4>3Pixels Sistemas Inteligentes</h4>
-          <p>Comercial · Render · Cidade: <em>a confirmar</em> · Serviços: <em>a confirmar</em></p>
-        </div>
-        <div class="legend-item">
-          <h4>Residência unifamiliar</h4>
-          <p>Residencial · Render · Cidade: <em>a confirmar</em> · Serviços: <em>a confirmar</em></p>
-        </div>
-        <div class="legend-item">
-          <h4>Residência unifamiliar</h4>
-          <p>Residencial · Render · Cidade: <em>a confirmar</em> · Serviços: <em>a confirmar</em></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="credibilidade">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Números do escritório.</h2>
-        <p>Indicadores em atualização — a lista completa entra no ar assim que confirmada.</p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-block">
-          <span class="stat-value">—</span>
-          <span class="stat-label">Projetos desenvolvidos</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-value">—</span>
-          <span class="stat-label">m² projetados</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-value">—</span>
-          <span class="stat-label">Cidades atendidas</span>
-        </div>
-        <div class="stat-block">
-          <span class="stat-value stat-text">Bruna Braatz</span>
-          <span class="stat-label">Engenheira responsável técnica — CREA-SC</span>
-        </div>
-      </div>
-      <p class="stats-note">Depoimentos de clientes — em coleta.</p>
     </div>
   </section>
 
