@@ -6,7 +6,7 @@
 <title>Naômi Engenharia Integrada — Chapecó, SC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
   :root{
@@ -115,7 +115,7 @@
   }
 
   .logo svg{
-    height: 20px;
+    height: 28px;
     width: auto;
     display: block;
   }
@@ -206,6 +206,8 @@
     animation: blurIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
+  .blur-strong{ font-weight: 700; }
+
   @keyframes blurIn{
     to{
       opacity: 1;
@@ -226,7 +228,7 @@
   p.sub{
     font-size: 1.08rem;
     color: var(--ink-soft);
-    max-width: 46ch;
+    max-width: 52ch;
     margin: 0 0 2.2rem;
   }
 
@@ -291,8 +293,8 @@
     position: absolute;
     inset: 0;
     margin: auto;
-    width: 68%;
-    height: 68%;
+    width: 60%;
+    height: 71%;
     border-radius: 6px;
     background-size: cover;
     background-position: center;
@@ -383,39 +385,50 @@
   .service-grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid var(--line);
+    gap: 1.4rem;
     max-width: 1040px;
     margin: 0 auto;
   }
 
-  .service-item{
-    padding: 1.3rem 1.4rem 1.3rem 0;
-    border-bottom: 1px solid var(--line);
+  .service-card{
+    position: relative;
+    aspect-ratio: 1 / 1;
+    padding: 1.8rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper-deep);
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(38,37,31,0.06);
   }
 
-  .service-item:nth-child(odd){ border-right: 1px solid var(--line); padding-right: 2rem; }
-  .service-item:nth-child(even){ padding-left: 2rem; }
+  .service-card:hover{
+    box-shadow: 0 24px 45px rgba(38,37,31,0.16);
+  }
 
-  .service-item .mark-sq{
-    width: 7px; height: 7px;
+  .service-card .mark-sq{
+    width: 8px; height: 8px;
     background: var(--accent);
-    margin-top: 8px;
+    margin-bottom: 1.1rem;
     flex-shrink: 0;
-    transform: rotate(45deg);
+    transform: rotate(45deg) translateZ(20px);
   }
 
-  .service-item h3{
-    font-size: 1.02rem;
+  .service-card h3{
+    font-size: 1.15rem;
     font-weight: 500;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.6rem;
+    transform: translateZ(20px);
   }
 
-  .service-item p{
-    font-size: 0.9rem;
+  .service-card p{
+    font-size: 0.92rem;
     color: var(--ink-soft);
+    transform: translateZ(20px);
   }
 
   .service-complement{
@@ -430,8 +443,11 @@
 
   @media (max-width: 780px){
     .service-grid{ grid-template-columns: 1fr; }
-    .service-item:nth-child(odd){ border-right: none; padding-right: 0; }
-    .service-item:nth-child(even){ padding-left: 0; }
+    .service-card{ aspect-ratio: auto; padding: 1.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .service-card{ transition: box-shadow 0.3s ease; }
   }
 
   /* ---------- processo ---------- */
@@ -503,6 +519,11 @@
     text-align: center;
   }
 
+  .audience-single{
+    grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+
   .tag-list{ display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 1.2rem; }
 
   .tag-list span{
@@ -511,6 +532,29 @@
     font-size: 0.85rem;
     border-radius: 2px;
     color: var(--ink-soft);
+  }
+
+  /* animação de entrada ao rolar (estilo Animated Content) */
+  .reveal-item{
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .reveal-item.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-item:nth-child(1){ transition-delay: 0s; }
+  .reveal-item:nth-child(2){ transition-delay: 0.07s; }
+  .reveal-item:nth-child(3){ transition-delay: 0.14s; }
+  .reveal-item:nth-child(4){ transition-delay: 0.21s; }
+  .reveal-item:nth-child(5){ transition-delay: 0.28s; }
+  .reveal-item:nth-child(6){ transition-delay: 0.35s; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal-item{ opacity: 1; transform: none; transition: none; }
   }
 
   @media (max-width: 780px){
@@ -869,15 +913,49 @@
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#top" aria-label="Naômi Engenharia"><svg xmlns="http://www.w3.org/2000/svg" viewBox="41.92 335.11 500.86 156.67">
-<g>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M387.2653 374.0335H392.1925V470.7573C394.2618 469.3711 396.4363 465.999 398.2107 463.8393L439.6187 411.6141 452.0747 426.2624C454.1774 428.6684 456.1954 431.3608 458.0923 433.7966L470.5699 449.0399C474.3519 453.0847 486.7892 469.552 489.5087 471.3732V374.0335H494.4362V480.4654H489.9657L446.8513 427.7906C445.4802 426.2525 444.8418 425.3187 443.4732 423.7764 442.0517 422.174 441.3166 420.7601 439.6187 419.6231 437.2002 421.3953 403.7321 465.2844 391.5601 480.4654H387.2653Z" fill="currentColor" fill-rule="evenodd"/>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M56.5132 374.0335H56.7377 56.9534C61.3244 374.0383 60.2099 374.2756 60.2084 384.5064V470.7573L62.3225 467.9433C63.2109 466.7125 63.7929 465.9738 64.6954 464.7719L131.1894 374.0335H135.3487C135.3084 406.8916 134.8387 443.3105 135.3728 475.7071 135.4164 478.3558 135.5579 479.7425 135.167 480.4654H129.8081V385.1226C127.6503 386.5677 122.4437 394.5353 120.3999 397.275 101.7907 422.2174 83.2572 448.59 64.6064 473.3079 63.7699 474.4168 61.7278 477.6129 59.6191 480.4654H54.6693C54.716 447.8074 55.1735 411.7017 54.6437 379.5565 54.5984 376.8137 53.9164 374.0335 56.5132 374.0335" fill="currentColor" fill-rule="evenodd"/>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M262.2322 427.0158C262.2322 444.9481 270.5644 458.3767 282.4588 467.1595 291.5487 473.872 300.7414 476.3018 312.7382 476.3018 328.3189 476.3018 341.6151 467.4172 350.5788 455.6248 352.6356 452.9188 353.2561 451.2886 354.8313 448.1725 361.1472 435.676 361.0806 420.1197 355.036 407.5021 353.3426 403.9673 353.3686 403.3392 350.8455 399.9886 348.7836 397.2504 347.6937 395.7466 345.2306 393.283 314.0742 362.1186 262.2322 385.4537 262.2322 427.0158ZM257.3048 431.3282C257.3048 415.1659 259.8922 405.33 269.7642 393.2728 288.6772 370.1738 324.167 367.6816 345.2241 386.5127 349.7717 390.5796 350.6811 391.2571 354.7199 396.7294 364.0527 409.3739 366.4945 425.8449 362.7658 441.3231 361.0687 448.3675 356.8377 456.5699 351.9992 461.9741 346.1749 468.4793 342.7226 471.8013 334.0993 476.1057 320.3076 482.9899 301.6542 483.0803 287.6814 476.1057 284.8229 474.679 282.3653 473.3739 279.9048 471.5626 267.5801 462.4869 257.3048 446.5962 257.3048 431.3282" fill="currentColor" fill-rule="evenodd"/>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M155.9716 373.3308H161.1921C167.2092 386.0527 175.4691 408.8843 181.5619 422.6873L202.4872 471.9895C202.9388 470.0511 204.1764 467.4591 204.863 465.7405L217.4465 435.2017C219.2122 430.7882 221.2118 426.6377 222.7275 422.6176L240.323 379.842C241.2411 377.6488 242.1638 375.26 243.1383 373.4169L248.9031 373.4306C249.0123 373.3217 209.9823 466.545 205.3032 477.8861 204.9443 478.7427 204.5426 479.6028 204.1509 480.4654H200.0605C199.8374 479.8913 199.6254 479.3196 199.4077 478.7666L190.6903 457.9138Z" fill="currentColor" fill-rule="evenodd"/>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M525.8486 374.0335H530.7758V480.4654H525.8486Z" fill="currentColor" fill-rule="evenodd"/>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M269.6233 489.8557H350.3098C351.7288 489.8557 352.1574 490.2843 352.1574 491.7039V494.7843H269.6233Z" fill="currentColor" fill-rule="evenodd"/>
-<path transform="matrix(1,0,0,-1,0,841.8898)" d="M269.6233 489.8557H350.3098C351.7288 489.8557 352.1574 490.2843 352.1574 491.7039V494.7843H269.6233Z" fill="currentColor" fill-rule="evenodd"/>
+    <a class="logo" href="#top" aria-label="Naômi Engenharia Integrada"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="140.50 283.00 315.00 132.50">
+<defs>
+<path id="font_1_40" d="M.10598755 0V.70799258H.5179901V.6879883H.1269989V.3769989H.49499513V.35699464H.1269989V.019989014H.5339966V0H.10598755Z"/>
+<path id="font_1_49" d="M.6389923 0 .1309967 .6799927H.12799073V0H.10598755V.70799258H.13699341L.6459961 .0289917H.6489868V.70799258H.67099V0H.6389923Z"/>
+<path id="font_1_42" d="M.69898989 .040985109C.67099 .025985718 .6359863 .011993408 .59298709-.0010070801 .5499878-.014007568 .5009918-.020004273 .44499208-.020004273 .3889923-.020004273 .33799745-.010009766 .2919922 .008987427 .24598694 .027999878 .20698548 .054992677 .17399597 .08898926 .14099121 .12199402 .115997318 .1619873 .09899902 .20799256 .08099365 .25299073 .07199097 .30299378 .07199097 .35598756 .07199097 .40899659 .08099365 .45899964 .09899902 .5049896 .116989139 .5499878 .14199829 .58999636 .1749878 .6230011 .20698548 .6559906 .24598694 .68099978 .29100038 .69999697 .33599855 .71899417 .38598634 .7279968 .44099427 .7279968 .4889984 .7279968 .5329895 .72099307 .57299807 .70599368 .61299136 .69099429 .647995 .67099 .67900088 .6459961L.6629944 .6299896C.6499939 .6429901 .6339874 .6539917 .61698916 .6639862 .598999 .6729889 .5799866 .68099978 .5609894 .6879883 .54100039 .69499209 .5209961 .69999697 .5 .7029877 .47898866 .70599368 .45899964 .70799258 .43998719 .70799258 .3880005 .70799258 .34098817 .69898989 .2979889 .68099978 .25498963 .6619873 .21899414 .6369934 .18899536 .6049957 .1579895 .57299807 .1349945 .5359955 .11898804 .49299623 .101989749 .44999696 .09399414 .40499879 .09399414 .35598756 .09399414 .30699159 .101989749 .26098634 .117996219 .21798706 .13398743 .1749878 .15699768 .13699341 .18798828 .10499573 .21798706 .07199097 .25498963 .04699707 .29899598 .027999878 .34199525 .008987427 .3919983 0 .44699098 0 .49499513 0 .5379944 .004989624 .57499697 .01499939 .6119995 .024993897 .6469879 .037994386 .6779938 .052993776V.33099366H.49398805V.34999085H.69898989V.040985109Z"/>
+<path id="font_1_43" d="M.60398867 0V.35598756H.12799073V0H.10598755V.70799258H.12799073V.37599183H.60398867V.70799258H.6259918V0H.60398867Z"/>
+<path id="font_1_36" d="M.6239929 0 .5399933 .20298767H.1289978L.041992189 0H.017990113L.32499696 .70799258H.35299684L.647995 0H.6239929M.33799745 .69400027 .13699341 .22200012H.5329895L.33799745 .69400027Z"/>
+<path id="font_1_53" d="M.5079956 0 .2939911 .35699464H.12799073V0H.10598755V.70799258H.3019867C.32798768 .70799258 .35398866 .70599368 .3809967 .70098879 .4079895 .69599917 .43199159 .6879883 .45298768 .6749878 .47399903 .6619873 .4909973 .6439972 .5039978 .62098696 .5169983 .59799197 .5239868 .56900027 .5239868 .5329895 .5239868 .5 .5179901 .47200013 .5049896 .44999696 .49198915 .42799378 .47599793 .4099884 .45599366 .39698792 .43598939 .3829956 .4139862 .37298585 .3899994 .36698915 .36499024 .36099244 .34098817 .35798646 .31799317 .35798646L.5329895 0H.5079956M.5019989 .5329895C.5019989 .56399539 .49598695 .58898928 .48399354 .6100006 .47200013 .6299896 .45599366 .6459961 .43699647 .6579895 .4169922 .6689911 .3939972 .6769867 .36898805 .6819916 .34298707 .68699648 .31698609 .68899539 .2899933 .68899539H.12799073V.37599183H.30099488C.3659973 .37599183 .41600038 .3899994 .45098878 .4169922 .4850006 .44400025 .5019989 .48298646 .5019989 .5329895Z"/>
+<path id="font_1_44" d="M.10598755 0V.70799258H.12799073V0H.10598755Z"/>
+<path id="font_1_3" d=""/>
+<path id="font_1_55" d="M.2809906 .6879883V0H.25898744V.6879883H.017990113V.70799258H.5219879V.6879883H.2809906Z"/>
+<path id="font_1_39" d="M.69799807 .35398866C.69799807 .29299928 .6879883 .23999024 .66799929 .19599915 .647995 .15098572 .6199951 .114990238 .58499148 .085998538 .5499878 .056991579 .5079956 .034988405 .46099855 .020996094 .41299439 .0069885256 .3619995 0 .30699159 0H.10598755V.70799258H.30699159C.3619995 .70799258 .41299439 .70098879 .46099855 .6879883 .5079956 .673996 .5499878 .6529999 .58499148 .6239929 .6199951 .59498599 .647995 .55799868 .66799929 .5130005 .6879883 .46798707 .69799807 .4149933 .69799807 .35398866M.1289978 .6879883V.019989014H.3019867C.35398866 .019989014 .40299989 .026992798 .44898988 .039993287 .49398805 .052993776 .5339966 .07299805 .5669861 .099990848 .59999087 .1269989 .6269989 .16099549 .6459961 .20298767 .6649933 .24499512 .6749878 .29499818 .6749878 .35398866 .6749878 .41299439 .6649933 .46299745 .6459961 .5059967 .6269989 .5479889 .59999087 .58299258 .5669861 .6100006 .5339966 .6369934 .49398805 .6559906 .44898988 .6689911 .40299989 .6819916 .35398866 .6879883 .3019867 .6879883H.1289978Z"/>
+</defs>
+<g class="logo-tagline" fill="currentColor" opacity="0.6">
+<use data-text="E" xlink:href="#font_1_40" transform="matrix(23.987,0,0,-23.987,148.6327,405.41728)"/>
+<use data-text="N" xlink:href="#font_1_49" transform="matrix(23.987,0,0,-23.987,162.78504,405.41728)"/>
+<use data-text="G" xlink:href="#font_1_42" transform="matrix(23.987,0,0,-23.987,181.42293,405.41728)"/>
+<use data-text="E" xlink:href="#font_1_40" transform="matrix(23.987,0,0,-23.987,200.4926,405.41728)"/>
+<use data-text="N" xlink:href="#font_1_49" transform="matrix(23.987,0,0,-23.987,214.64493,405.41728)"/>
+<use data-text="H" xlink:href="#font_1_43" transform="matrix(23.987,0,0,-23.987,233.28282,405.41728)"/>
+<use data-text="A" xlink:href="#font_1_36" transform="matrix(23.987,0,0,-23.987,250.84131,405.41728)"/>
+<use data-text="R" xlink:href="#font_1_53" transform="matrix(23.987,0,0,-23.987,266.81666,405.41728)"/>
+<use data-text="I" xlink:href="#font_1_44" transform="matrix(23.987,0,0,-23.987,281.06495,405.41728)"/>
+<use data-text="A" xlink:href="#font_1_36" transform="matrix(23.987,0,0,-23.987,286.6779,405.41728)"/>
+<use data-text="&#x2029;" xlink:href="#font_1_3" transform="matrix(23.987,0,0,-23.987,302.2217,405.41728)"/>
+<use data-text="I" xlink:href="#font_1_44" transform="matrix(23.987,0,0,-23.987,311.5162,405.41728)"/>
+<use data-text="N" xlink:href="#font_1_49" transform="matrix(23.987,0,0,-23.987,317.12916,405.41728)"/>
+<use data-text="T" xlink:href="#font_1_55" transform="matrix(23.987,0,0,-23.987,335.76707,405.41728)"/>
+<use data-text="E" xlink:href="#font_1_40" transform="matrix(23.987,0,0,-23.987,348.72004,405.41728)"/>
+<use data-text="G" xlink:href="#font_1_42" transform="matrix(23.987,0,0,-23.987,362.87239,405.41728)"/>
+<use data-text="R" xlink:href="#font_1_53" transform="matrix(23.987,0,0,-23.987,381.94206,405.41728)"/>
+<use data-text="A" xlink:href="#font_1_36" transform="matrix(23.987,0,0,-23.987,396.19035,405.41728)"/>
+<use data-text="D" xlink:href="#font_1_39" transform="matrix(23.987,0,0,-23.987,412.16569,405.41728)"/>
+<use data-text="A" xlink:href="#font_1_36" transform="matrix(23.987,0,0,-23.987,430.0599,405.41728)"/>
+</g>
+<g class="logo-mark" fill="currentColor">
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M356.8059 473.8927H359.8549V533.7499C361.1356 532.8918 362.4812 530.8053 363.5793 529.4687L389.2045 497.1492 396.913 506.2144C398.2141 507.7032 399.4631 509.3697 400.6369 510.8769L408.3588 520.31C410.6991 522.8133 418.396 533.0041 420.0789 534.1309V473.8927H423.1281V539.7579H420.3618L393.6804 507.1601C392.832 506.2082 392.4369 505.6302 391.5899 504.6758 390.7103 503.6842 390.2553 502.8094 389.2045 502.1056 387.7078 503.2023 366.9962 530.3631 359.4637 539.7579H356.8059Z" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M152.1207 473.8927H152.2596 152.3931C155.0982 473.8958 154.4083 474.0426 154.4074 480.3738V533.7499L155.7159 532.0083C156.2655 531.2466 156.6258 530.7897 157.1842 530.0459L198.3339 473.8927H200.9078C200.8828 494.2267 200.5923 516.7644 200.9228 536.813 200.9497 538.452 201.0373 539.3103 200.7955 539.7579H197.479V480.7551C196.1439 481.6494 192.9217 486.58 191.6569 488.2754 180.1406 503.7111 168.6711 520.0316 157.1292 535.3285 156.6116 536.0148 155.3477 537.9925 154.0429 539.7579H150.9795C151.0087 519.5475 151.2916 497.2037 150.9639 477.3104 150.9358 475.613 150.5137 473.8927 152.1207 473.8927" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M279.4294 506.6804C279.4294 517.7781 284.5857 526.0881 291.9467 531.5233 297.5717 535.6774 303.2609 537.1809 310.6848 537.1809 320.3269 537.1809 328.5553 531.6829 334.1024 524.3854 335.3754 522.7106 335.7592 521.7018 336.7341 519.7734 340.6428 512.0399 340.6014 502.4129 336.8608 494.6046 335.8128 492.4171 335.829 492.0284 334.2674 489.9549 332.9915 488.2603 332.3171 487.3297 330.7927 485.8053 311.5117 466.5192 279.4294 480.96 279.4294 506.6804ZM276.3799 509.3493C276.3799 499.3475 277.9812 493.2604 284.0905 485.799 295.7947 471.5039 317.7575 469.9616 330.7887 481.6154 333.6029 484.1323 334.1659 484.5515 336.6652 487.938 342.4408 495.7631 343.9519 505.9559 341.6443 515.5345 340.594 519.8939 337.9757 524.9701 334.9814 528.3145 331.3772 532.3402 329.2407 534.3959 323.9042 537.0599 315.3691 541.3201 303.8255 541.3759 295.1785 537.0599 293.4096 536.1769 291.8886 535.369 290.3661 534.2482 282.7389 528.6319 276.3799 518.798 276.3799 509.3493" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M213.6702 473.4578H216.9011C220.6247 481.3308 225.7362 495.4598 229.5068 504.0017L242.4563 534.5124C242.7358 533.3128 243.5017 531.7087 243.9266 530.6451L251.714 511.7462C252.8065 509.0153 254.0441 506.4466 254.982 503.9586L265.8711 477.4873C266.4391 476.13 267.01 474.6515 267.6132 473.5111L271.1806 473.5196C271.2484 473.4522 247.0946 531.1431 244.1991 538.1614 243.9768 538.6915 243.7282 539.2239 243.4859 539.7579H240.9545C240.8165 539.4025 240.6852 539.0487 240.5506 538.7066L235.156 525.8018Z" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M442.5678 473.8927H445.6168V539.7579H442.5678Z" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M284.0034 545.5689H333.936C334.8142 545.5689 335.0795 545.8343 335.0795 546.7127V548.619H284.0034Z" fill-rule="evenodd"/>
+<path transform="matrix(1,0,0,-1,0,841.8898)" d="M284.0034 545.5689H333.936C334.8142 545.5689 335.0795 545.8343 335.0795 546.7127V548.619H284.0034Z" fill-rule="evenodd"/>
 </g>
 </svg></a>
     <ul class="nav-links">
@@ -898,11 +976,12 @@
     <div class="wrap hero-inner">
       <div class="hero-text">
         <p class="location-tag">Chapecó e região — <b>SC</b></p>
-        <h1 class="headline"><span class="blur-word" style="animation-delay:0.0s">Projetos</span> <span class="blur-word" style="animation-delay:0.08s">e</span> <span class="blur-word" style="animation-delay:0.16s">obras</span> <span class="blur-word" style="animation-delay:0.24s">comerciais</span> <span class="blur-word" style="animation-delay:0.32s">e</span> <span class="blur-word" style="animation-delay:0.4s">industriais,</span> <span class="blur-word" style="animation-delay:0.48s">com</span> <span class="blur-word" style="animation-delay:0.56s">coordenação</span> <span class="blur-word" style="animation-delay:0.64s">centralizada.</span></h1>
+        <h1 class="headline"><span class="blur-word blur-strong" style="animation-delay:0.0s">Projetos</span> <span class="blur-word blur-strong" style="animation-delay:0.08s">e</span> <span class="blur-word blur-strong" style="animation-delay:0.16s">obras</span> <span class="blur-word blur-strong" style="animation-delay:0.24s">comerciais</span> <span class="blur-word blur-strong" style="animation-delay:0.32s">e</span> <span class="blur-word blur-strong" style="animation-delay:0.4s">industriais,</span> <span class="blur-word" style="animation-delay:0.48s">com</span> <span class="blur-word" style="animation-delay:0.56s">coordenação</span> <span class="blur-word" style="animation-delay:0.64s">centralizada.</span></h1>
         <p class="sub">
-          A Naômi desenvolve projeto arquitetônico, estrutural, elétrico e hidrossanitário,
-          aprovações e gerenciamento de obra em um único escritório — com compatibilização
-          entre disciplinas antes da execução.
+          Naômi Engenharia Integrada: projetos arquitetônicos, estruturais, elétricos e
+          hidrossanitários, aprovações e gerenciamento de obras. Do projeto à execução,
+          todas as etapas da sua obra integradas em um só escritório. Mais segurança e
+          menos imprevistos.
         </p>
         <div class="hero-cta">
           <a class="btn" href="#contato">Falar sobre meu projeto</a>
@@ -930,29 +1009,19 @@
   <section id="para-quem">
     <div class="wrap">
       <div class="section-head">
-        <h2>Para quem a Naômi trabalha.</h2>
+        <h2>Para quem a Naômi Engenharia Integrada trabalha.</h2>
         <p>Atendemos empresários, indústrias, comércio, construtoras e investidores que precisam desenvolver projetos e executar obras comerciais, industriais ou multifamiliares.</p>
       </div>
-      <div class="audience">
-        <div>
-          <h3 style="font-size:1rem; font-family:'Inter'; font-weight:600; color:var(--ink-soft); margin-bottom:0.6rem;">Quem contrata a Naômi</h3>
-          <div class="tag-list">
-            <span>Empresários</span>
-            <span>Indústrias</span>
-            <span>Comércio</span>
-            <span>Construtoras</span>
-            <span>Investidores</span>
-          </div>
-        </div>
+      <div class="audience audience-single">
         <div>
           <h3 style="font-size:1rem; font-family:'Inter'; font-weight:600; color:var(--ink-soft); margin-bottom:0.6rem;">Tipos de obra</h3>
-          <div class="tag-list">
-            <span>Barracões comerciais</span>
-            <span>Barracões industriais</span>
-            <span>Edificações corporativas</span>
-            <span>Casas geminadas</span>
-            <span>Empreendimentos multifamiliares</span>
-            <span>Prédios de pequeno e médio porte</span>
+          <div class="tag-list reveal-list">
+            <span class="reveal-item">Barracões comerciais</span>
+            <span class="reveal-item">Barracões industriais</span>
+            <span class="reveal-item">Edificações corporativas</span>
+            <span class="reveal-item">Residências</span>
+            <span class="reveal-item">Empreendimentos multifamiliares</span>
+            <span class="reveal-item">Prédios de pequeno e médio porte</span>
           </div>
         </div>
       </div>
@@ -963,15 +1032,15 @@
     <div class="wrap">
       <div class="section-head">
         <h2>O que fazemos, em quatro frentes.</h2>
-        <p>Cada frente reúne disciplinas que, em outros escritórios, exigiriam contratos separados.</p>
+        <p>Diversas soluções para sua obra em um único lugar.</p>
       </div>
       <div class="service-grid">
-        <div class="service-item"><span class="mark-sq"></span><div><h3>Projetos de engenharia</h3><p>Arquitetônico, estrutural, elétrico e hidrossanitário, desenvolvidos de forma integrada a partir do projeto arquitetônico.</p></div></div>
-        <div class="service-item"><span class="mark-sq"></span><div><h3>Aprovações e regularizações</h3><p>PPCI, licenciamento ambiental e aprovação junto à prefeitura, para a obra avançar dentro da lei.</p></div></div>
-        <div class="service-item"><span class="mark-sq"></span><div><h3>Compatibilização BIM</h3><p>Todos os projetos cruzados em um modelo único antes da execução, reduzindo conflitos entre disciplinas.</p></div></div>
-        <div class="service-item"><span class="mark-sq"></span><div><h3>Gerenciamento e acompanhamento de obra</h3><p>Acompanhamento técnico da execução — com gerenciamento completo ou apenas conferência, conforme o contrato.</p></div></div>
+        <div class="service-card" data-tilt><span class="mark-sq"></span><h3>Projetos de engenharia</h3><p>Arquitetônico, estrutural, elétrico e hidrossanitário, desenvolvidos de forma integrada a partir do projeto arquitetônico.</p></div>
+        <div class="service-card" data-tilt><span class="mark-sq"></span><h3>Aprovações e regularizações</h3><p>PPCI, licenciamento ambiental e aprovação junto à prefeitura, para a obra avançar dentro da lei.</p></div>
+        <div class="service-card" data-tilt><span class="mark-sq"></span><h3>Compatibilização BIM</h3><p>Todos os projetos cruzados em um modelo único antes da execução, reduzindo conflitos entre disciplinas.</p></div>
+        <div class="service-card" data-tilt><span class="mark-sq"></span><h3>Gerenciamento e acompanhamento de obra</h3><p>Acompanhamento técnico da execução — com gerenciamento completo ou apenas conferência, conforme o contrato.</p></div>
       </div>
-      <p class="service-complement">Também fazem parte do escopo, como serviços complementares: <strong>PGR</strong> e <strong>incorporação imobiliária</strong>.</p>
+      <p class="service-complement">Serviços complementares: <strong>PGR</strong> e <strong>incorporação imobiliária</strong>.</p>
     </div>
   </section>
 
@@ -1317,6 +1386,57 @@
 
   render();
   startAutoplay();
+})();
+
+(function(){
+  var items = document.querySelectorAll('.reveal-item');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(function(el){ observer.observe(el); });
+})();
+
+(function(){
+  var cards = document.querySelectorAll('[data-tilt]');
+  if (!cards.length) return;
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
+
+  var MAX_TILT = 10;   // graus
+  var PERSPECTIVE = 800; // px
+
+  cards.forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width;   // 0 a 1
+      var y = (e.clientY - rect.top) / rect.height;    // 0 a 1
+      var rotateY = (x - 0.5) * MAX_TILT * 2;
+      var rotateX = (0.5 - y) * MAX_TILT * 2;
+      card.style.transform =
+        'perspective(' + PERSPECTIVE + 'px) ' +
+        'rotateX(' + rotateX.toFixed(2) + 'deg) ' +
+        'rotateY(' + rotateY.toFixed(2) + 'deg) ' +
+        'scale3d(1.03, 1.03, 1.03)';
+    });
+
+    card.addEventListener('mouseleave', function(){
+      card.style.transform = 'perspective(' + PERSPECTIVE + 'px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+    });
+  });
 })();
 </script>
 
