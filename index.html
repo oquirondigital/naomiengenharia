@@ -115,7 +115,7 @@
   }
 
   .logo svg{
-    height: 28px;
+    height: 39px;
     width: auto;
     display: block;
   }
@@ -175,12 +175,12 @@
   }
 
   .hero-inner{
-    max-width: 1180px;
+    max-width: 1240px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .hero-text{ text-align: left; }
@@ -275,10 +275,10 @@
   /* ---------- depth carousel (hero, coluna direita) ---------- */
   .depth-carousel{
     position: relative;
-    width: clamp(280px, 30vw, 400px);
-    height: clamp(280px, 30vw, 400px);
+    width: clamp(340px, 40vw, 520px);
+    height: clamp(340px, 40vw, 520px);
     margin: 0 auto;
-    perspective: 1100px;
+    perspective: 1200px;
     outline: none;
   }
 
@@ -293,8 +293,8 @@
     position: absolute;
     inset: 0;
     margin: auto;
-    width: 60%;
-    height: 71%;
+    width: 68%;
+    height: 96.6%;
     border-radius: 6px;
     background-size: cover;
     background-position: center;
@@ -345,7 +345,7 @@
     h1.headline{ max-width: 16ch; margin: 0 auto 1.5rem; }
     p.sub{ margin: 0 auto 2.2rem; }
     .credential{ margin: 0 auto; }
-    .depth-carousel{ width: clamp(240px, 60vw, 300px); height: clamp(240px, 60vw, 300px); margin-top: 2rem; }
+    .depth-carousel{ width: clamp(260px, 70vw, 360px); height: clamp(260px, 70vw, 360px); margin-top: 2rem; }
   }
 
   /* featured gallery item (foto que saiu do hero) */
@@ -509,29 +509,72 @@
     .diff-row{ padding: 1.8rem 0; }
   }
 
-  /* ---------- para quem ---------- */
-  .audience{
+  /* ---------- para quem (fundo invertido) ---------- */
+  #para-quem{
+    background: var(--ink);
+  }
+
+  #para-quem .section-head{ max-width: 900px; }
+  #para-quem .section-head h2{ color: var(--paper); max-width: 20ch; }
+  #para-quem .section-head p{ color: rgba(241,240,237,0.62); max-width: 62ch; }
+
+  .obra-cards{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    max-width: 960px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    max-width: 920px;
     margin: 0 auto;
-    text-align: center;
   }
 
-  .audience-single{
-    grid-template-columns: 1fr;
-    max-width: 620px;
+  .obra-card{
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
   }
 
-  .tag-list{ display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 1.2rem; }
+  .obra-card-img{
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  }
 
-  .tag-list span{
-    border: 1px solid var(--line);
-    padding: 0.45rem 0.9rem;
-    font-size: 0.85rem;
-    border-radius: 2px;
-    color: var(--ink-soft);
+  .obra-card::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.8) 100%);
+  }
+
+  .obra-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 20px 36px rgba(0,0,0,0.38);
+  }
+
+  .obra-card:hover .obra-card-img{
+    transform: scale(1.08);
+  }
+
+  .obra-card-label{
+    position: absolute;
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1rem;
+    z-index: 2;
+    color: #fff;
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .obra-card, .obra-card-img{ transition: none; }
   }
 
   /* animação de entrada ao rolar (estilo Animated Content) */
@@ -558,7 +601,11 @@
   }
 
   @media (max-width: 780px){
-    .audience{ grid-template-columns: 1fr; gap: 2rem; }
+    .obra-cards{ grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px){
+    .obra-cards{ grid-template-columns: 1fr; max-width: 320px; }
   }
 
   /* ---------- galeria ---------- */
@@ -975,21 +1022,18 @@
   <section class="hero">
     <div class="wrap hero-inner">
       <div class="hero-text">
-        <p class="location-tag">Chapecó e região — <b>SC</b></p>
         <h1 class="headline"><span class="blur-word blur-strong" style="animation-delay:0.0s">Projetos</span> <span class="blur-word blur-strong" style="animation-delay:0.08s">e</span> <span class="blur-word blur-strong" style="animation-delay:0.16s">obras</span> <span class="blur-word blur-strong" style="animation-delay:0.24s">comerciais</span> <span class="blur-word blur-strong" style="animation-delay:0.32s">e</span> <span class="blur-word blur-strong" style="animation-delay:0.4s">industriais,</span> <span class="blur-word" style="animation-delay:0.48s">com</span> <span class="blur-word" style="animation-delay:0.56s">coordenação</span> <span class="blur-word" style="animation-delay:0.64s">centralizada.</span></h1>
         <p class="sub">
-          Naômi Engenharia Integrada: projetos arquitetônicos, estruturais, elétricos e
-          hidrossanitários, aprovações e gerenciamento de obras. Do projeto à execução,
-          todas as etapas da sua obra integradas em um só escritório. Mais segurança e
-          menos imprevistos.
+          Naômi Engenharia Integrada. Do projeto à execução, todas as etapas da sua
+          obra em um só escritório — mais segurança, menos imprevistos.
         </p>
         <div class="hero-cta">
           <a class="btn" href="#contato">Falar sobre meu projeto</a>
           <a class="btn-outline" href="#servicos">Conhecer os serviços</a>
         </div>
         <p class="credential">
-          Escritório fundado em 2022, em Chapecó (SC), sob responsabilidade técnica de
-          <strong>Bruna Braatz</strong>.
+          Chapecó (SC), sob responsabilidade técnica de
+          <strong>Eng.ª Bruna Braatz</strong>.
         </p>
       </div>
       <div class="depth-carousel" id="depthCarousel" tabindex="0" role="region" aria-label="Galeria de projetos em carrossel">
@@ -1012,18 +1056,13 @@
         <h2>Para quem a Naômi Engenharia Integrada trabalha.</h2>
         <p>Atendemos empresários, indústrias, comércio, construtoras e investidores que precisam desenvolver projetos e executar obras comerciais, industriais ou multifamiliares.</p>
       </div>
-      <div class="audience audience-single">
-        <div>
-          <h3 style="font-size:1rem; font-family:'Inter'; font-weight:600; color:var(--ink-soft); margin-bottom:0.6rem;">Tipos de obra</h3>
-          <div class="tag-list reveal-list">
-            <span class="reveal-item">Barracões comerciais</span>
-            <span class="reveal-item">Barracões industriais</span>
-            <span class="reveal-item">Edificações corporativas</span>
-            <span class="reveal-item">Residências</span>
-            <span class="reveal-item">Empreendimentos multifamiliares</span>
-            <span class="reveal-item">Prédios de pequeno e médio porte</span>
-          </div>
-        </div>
+      <div class="obra-cards">
+        <div class="obra-card reveal-item"><div class="obra-card-img bg-industrial-1"></div><span class="obra-card-label">Barracões comerciais</span></div>
+        <div class="obra-card reveal-item"><div class="obra-card-img bg-industrial-2"></div><span class="obra-card-label">Barracões industriais</span></div>
+        <div class="obra-card reveal-item"><div class="obra-card-img bg-comercial-1"></div><span class="obra-card-label">Edificações corporativas</span></div>
+        <div class="obra-card reveal-item"><div class="obra-card-img bg-residencial-1"></div><span class="obra-card-label">Residências</span></div>
+        <div class="obra-card reveal-item"><div class="obra-card-img bg-residencial-2"></div><span class="obra-card-label">Empreendimentos multifamiliares</span></div>
+        <div class="obra-card reveal-item"><div class="obra-card-img bg-comercial-2"></div><span class="obra-card-label">Prédios de pequeno e médio porte</span></div>
       </div>
     </div>
   </section>
@@ -1294,8 +1333,8 @@
   var active = 0;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var SPACING = 70;    // px, distância horizontal entre cards vizinhos
-  var DEPTH = 130;      // px, quanto cada card recua no eixo Z
+  var SPACING = 90;    // px, distância horizontal entre cards vizinhos
+  var DEPTH = 165;      // px, quanto cada card recua no eixo Z
   var SCALE_STEP = 0.14;
   var OPACITY_STEP = 0.3;
   var MAX_VISIBLE_OFFSET = 3;
