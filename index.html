@@ -162,6 +162,8 @@
   }
 
   @media (max-width: 780px){
+    .nav{ justify-content: center; }
+    .nav-cta{ display: none; }
     .nav-links{
       display: none;
       position: absolute;
@@ -184,6 +186,10 @@
     }
     .nav-toggle{
       display: flex;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
       background: none;
       border: 1px solid var(--line);
       border-radius: 2px;
@@ -544,8 +550,16 @@
     .step:not(:last-child)::after{ display: none; }
   }
   @media (max-width: 560px){
-    .process{ grid-template-columns: 1fr; max-width: 300px; }
+    .process{ grid-template-columns: 1fr; max-width: 300px; gap: 2rem; }
     .step{ aspect-ratio: auto; }
+    .step:not(:last-child)::after{
+      display: block;
+      top: 100%;
+      left: 50%;
+      width: 2px;
+      height: 2rem;
+      transform: translateX(-50%);
+    }
   }
 
   /* ---------- diferenciais ---------- */
@@ -663,6 +677,7 @@
 
   @media (max-width: 780px){
     .obra-cards{ grid-template-columns: 1fr 1fr; max-width: 400px; }
+    .obra-card{ aspect-ratio: 1.25 / 1; }
   }
 
   @media (max-width: 480px){
@@ -1002,6 +1017,7 @@
 
   @media (max-width: 780px){
     .contact-grid{ grid-template-columns: 1fr; }
+    .contact-info > .btn{ display: block; width: max-content; margin: 0 auto 2rem; }
   }
 
   footer{
@@ -1120,7 +1136,7 @@
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-    <a class="nav-cta" href="#contato">Falar com a Naômi</a>
+    <a class="nav-cta" href="https://wa.me/5549988039991" target="_blank" rel="noopener">Falar com a Naômi</a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -1138,7 +1154,7 @@
           obra em um só escritório. Mais segurança, menos imprevistos.
         </p>
         <div class="hero-cta">
-          <a class="btn" href="#contato">Falar sobre meu projeto</a>
+          <a class="btn" href="https://wa.me/5549988039991" target="_blank" rel="noopener">Falar sobre meu projeto</a>
           <a class="btn-outline" href="#servicos">Conhecer os serviços</a>
         </div>
         <p class="credential">
