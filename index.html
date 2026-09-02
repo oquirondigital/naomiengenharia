@@ -1022,27 +1022,41 @@
 
   footer{
     border-top: 1px solid var(--line);
-    padding: 2rem 0;
+    padding: 3rem 0;
+  }
+
+  .footer-new{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.9rem;
+  }
+
+  .footer-logo svg{
+    height: 22px;
+    width: auto;
+    color: var(--ink);
+  }
+
+  .footer-copy{
     font-size: 0.85rem;
     color: var(--ink-soft);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    line-height: 1.5;
   }
 
-  .footer-brand{
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-
-  .footer-brand svg{
-    height: 13px;
-    width: auto;
+  .footer-credit{
+    font-size: 0.8rem;
     color: var(--ink-soft);
-    flex-shrink: 0;
   }
+
+  .footer-credit a{
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-credit a:hover{ color: var(--ink); }
 
   .whatsapp-float{
     position: fixed;
@@ -1376,9 +1390,8 @@
 </main>
 
 <footer>
-  <div class="wrap footer" style="display:flex; align-items:center; justify-content:center; width:100%; flex-wrap:wrap; gap:1rem;">
-    <div class="footer-brand">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="41.92 335.11 500.86 156.67">
+  <div class="wrap footer-new">
+    <div class="footer-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="41.92 335.11 500.86 156.67">
 <g>
 <path transform="matrix(1,0,0,-1,0,841.8898)" d="M387.2653 374.0335H392.1925V470.7573C394.2618 469.3711 396.4363 465.999 398.2107 463.8393L439.6187 411.6141 452.0747 426.2624C454.1774 428.6684 456.1954 431.3608 458.0923 433.7966L470.5699 449.0399C474.3519 453.0847 486.7892 469.552 489.5087 471.3732V374.0335H494.4362V480.4654H489.9657L446.8513 427.7906C445.4802 426.2525 444.8418 425.3187 443.4732 423.7764 442.0517 422.174 441.3166 420.7601 439.6187 419.6231 437.2002 421.3953 403.7321 465.2844 391.5601 480.4654H387.2653Z" fill="currentColor" fill-rule="evenodd"/>
 <path transform="matrix(1,0,0,-1,0,841.8898)" d="M56.5132 374.0335H56.7377 56.9534C61.3244 374.0383 60.2099 374.2756 60.2084 384.5064V470.7573L62.3225 467.9433C63.2109 466.7125 63.7929 465.9738 64.6954 464.7719L131.1894 374.0335H135.3487C135.3084 406.8916 134.8387 443.3105 135.3728 475.7071 135.4164 478.3558 135.5579 479.7425 135.167 480.4654H129.8081V385.1226C127.6503 386.5677 122.4437 394.5353 120.3999 397.275 101.7907 422.2174 83.2572 448.59 64.6064 473.3079 63.7699 474.4168 61.7278 477.6129 59.6191 480.4654H54.6693C54.716 447.8074 55.1735 411.7017 54.6437 379.5565 54.5984 376.8137 53.9164 374.0335 56.5132 374.0335" fill="currentColor" fill-rule="evenodd"/>
@@ -1388,10 +1401,9 @@
 <path transform="matrix(1,0,0,-1,0,841.8898)" d="M269.6233 489.8557H350.3098C351.7288 489.8557 352.1574 490.2843 352.1574 491.7039V494.7843H269.6233Z" fill="currentColor" fill-rule="evenodd"/>
 <path transform="matrix(1,0,0,-1,0,841.8898)" d="M269.6233 489.8557H350.3098C351.7288 489.8557 352.1574 490.2843 352.1574 491.7039V494.7843H269.6233Z" fill="currentColor" fill-rule="evenodd"/>
 </g>
-</svg>
-      <span>Engenharia Integrada LTDA, Chapecó (SC)</span>
-    </div>
-    <!-- TODO agência: inserir crédito/link da agência aqui antes de publicar, se desejado -->
+</svg></div>
+    <p class="footer-copy">&copy; 2026 - Naômi Engenharia Integrada<br>Todos os direitos reservados.</p>
+    <p class="footer-credit">Website desenvolvido por <a href="https://oquirondigital.com.br/" target="_blank" rel="noopener">Oquíron Digital.</a></p>
   </div>
 </footer>
 
